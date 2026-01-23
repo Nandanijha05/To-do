@@ -78,7 +78,7 @@ document.addEventListener('DOMContentLoaded', function (){
     main.appendChild(filt);
 
     main.appendChild(list)
-    
+
             ///Adding Event listener on the submit
             submit.addEventListener('click', function (){
             let text1=text.value;
@@ -115,7 +115,7 @@ document.addEventListener('DOMContentLoaded', function (){
 
             let diff=(taskOnly-todayOnly)/(1000*60*60*24);
             if(diff===0)
-                span.innerText="today"
+                span.innerText="Today"
             else if(diff===1)
                 span.innerText="Tomorrow"
             else if(diff===-1)
@@ -145,6 +145,8 @@ document.addEventListener('DOMContentLoaded', function (){
                 task.appendChild(taskText)
                 task.appendChild(span)
                 list.appendChild(task)
+                let allTasks = list.querySelectorAll('li')
+                
                 checkbox.addEventListener('change',function(){
                         if(checkbox.checked){
                             task.style.textDecoration="line-through"
@@ -157,7 +159,23 @@ document.addEventListener('DOMContentLoaded', function (){
             
             text.value=""
             date.value=""
-                    
+
+      
+
+            
         }) 
+        btntdy.addEventListener('click', function() {
+    const allTasks = list.querySelectorAll('li');
+
+    allTasks.forEach(task => {
+        const dateSpan = task.querySelector('.task-date');
+        if (dateSpan.innerText === 'Today') {
+            task.style.display = 'block';
+        } else {
+            task.style.display = 'none';
+        }
+    });
+});
+
 })
 
